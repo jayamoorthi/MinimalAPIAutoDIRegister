@@ -13,6 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutBox", "OutBox\OutBox.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6C92DA4E-EED4-4628-AAF5-7027FACC7254}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\..\Documents\Auto DI Register for Endpoints using minimal API.docx = ..\..\..\Documents\Auto DI Register for Endpoints using minimal API.docx
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
