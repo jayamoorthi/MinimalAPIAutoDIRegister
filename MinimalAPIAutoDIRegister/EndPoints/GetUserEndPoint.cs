@@ -7,7 +7,7 @@ class GetUserEndPoint : IEndPoint
     public async Task MapEndPointAsync(IEndpointRouteBuilder app)
     {
         app.MapGet("users/{userId}", async (
-            int userId,
+            Guid userId,
             ISender sender) =>
         {
             var query = new GetUserInfoQuery(userId);

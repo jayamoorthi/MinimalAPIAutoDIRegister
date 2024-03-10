@@ -1,9 +1,16 @@
-﻿using MediatR;
+﻿using Domain.BaseDomain.DomainModels;
+using MediatR;
 
-namespace MinimalAPIAutoDIRegister.CommonEndPoint.User
-{
+
     public class DeleteUserCommand : IRequest<User>
     {
-        public int Id { get; set; }
-    }
+        public DeleteUserCommand(Guid userId, User user )
+        {
+            Id = userId;
+            User = user;
+        }
+        public Guid Id { get; set; }
+
+    public User User { get; set; }
 }
+

@@ -29,7 +29,7 @@ public static class EndPointServiceExtension
             ;
         foreach (IEndPoint endpoint in endpoints)
         {
-            endpoint.MapEndPoint(builder);
+            endpoint.MapEndPointAsync(builder);
         }
 
         return app;

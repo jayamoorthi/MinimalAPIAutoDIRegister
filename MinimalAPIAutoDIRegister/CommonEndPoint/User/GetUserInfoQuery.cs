@@ -1,13 +1,14 @@
-﻿using MediatR;
+﻿using Domain.BaseDomain.DomainModels;
+using MediatR;
 using MinimalAPIAutoDIRegister.CommonEndPoint.User;
 
     public class GetUserInfoQuery : IRequest<GetUserInfoQueryResponse>
     {
-    public GetUserInfoQuery( int userId)
+    public GetUserInfoQuery( Guid userId)
     {
         UserId = userId;
     }
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
     }
     public class GetUserInfoQueryResponse : User
     {

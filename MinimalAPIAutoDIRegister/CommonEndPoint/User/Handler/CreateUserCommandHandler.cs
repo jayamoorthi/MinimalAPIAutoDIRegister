@@ -1,29 +1,34 @@
-﻿using MediatR;
+﻿using Domain.BaseDomain.DomainModels;
+using Domain.Interfaces;
+using MediatR;
 
-namespace MinimalAPIAutoDIRegister.CommonEndPoint.User.Handler
-{
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, User>
     {
         private readonly List<User> _users = new List<User>();
-        private int _nextProductId = 1;
+    private readonly IUserService _userService;
+    private int _nextProductId = 1;
 
+    public CreateUserCommandHandler(IUserService userService)
+    {
+        _userService = userService;
+    }
         public async Task<User> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
+
+           
             // Simulate creating a new product
             var user = new User
             {
-                Id = _nextProductId++,
+                Id = request.Id,
                 LastName = request.LastName,
                 Email = request.Email,
                 FullName = request.FullName
                 
             };
 
-            // Add the user to the fake data source
-            _users.Add(user);
-
+            return await _userService.InsertAsync(user);
             // Return_ the newly created product's ID
-            return user;
+           
         }
     }
-}
+

@@ -5,18 +5,18 @@ using MinimalAPIAutoDIRegister.CommonEndPoint.User;
 
 namespace MinimalAPIAutoDIRegister.EndPoints
 {
-    public class CreateUserEndPoint : IEndPoint
+    public class DeleteUserEndPoint : IEndPoint
     {
         public async Task MapEndPointAsync(IEndpointRouteBuilder app)
         {
-            app.MapPost("users", async ( User user ,
-           ISender sender) =>
+            app.MapDelete("user/{userId}", async (Guid userId, User user, ISender sender) =>
             {
-                var query = new CreateUserCommand();
+                var command = new DeleteUserCommand(userId, user);
 
-                var result = await sender.Send(query);
+                var res = await sender.Send(command);
 
-                return Results.Ok(result);
+                return Results.Ok(res);
+
             });
         }
     }
