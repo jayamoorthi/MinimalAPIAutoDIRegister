@@ -3,7 +3,7 @@ using MinimalAPIAutoDIRegister.CommonEndPoint;
 using OpenTracing.Tag;
 
 class GetUserEndPoint : IEndPoint
-    {
+{
     public async Task MapEndPointAsync(IEndpointRouteBuilder app)
     {
         app.MapGet("users/{userId}", async (

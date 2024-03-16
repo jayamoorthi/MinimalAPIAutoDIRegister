@@ -1,6 +1,6 @@
 ﻿using Domain.BaseDomain;
 using Domain.Interfaces;
-using Infrastructure.InventoryDb;
+using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

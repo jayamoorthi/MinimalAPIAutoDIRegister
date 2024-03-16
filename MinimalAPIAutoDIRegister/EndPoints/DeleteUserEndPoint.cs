@@ -9,9 +9,9 @@ namespace MinimalAPIAutoDIRegister.EndPoints
     {
         public async Task MapEndPointAsync(IEndpointRouteBuilder app)
         {
-            app.MapDelete("user/{userId}", async (Guid userId, User user, ISender sender) =>
+            app.MapDelete("user/{userId}", async (Guid userId, ISender sender) =>
             {
-                var command = new DeleteUserCommand(userId, user);
+                var command = new DeleteUserCommand(userId);
 
                 var res = await sender.Send(command);
 

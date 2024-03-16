@@ -2,14 +2,13 @@
 using MediatR;
 using MinimalAPIAutoDIRegister.CommonEndPoint.User;
 
-public class UpdateUserCommand : IRequest<User>
+public class UpdateUserCommand : User,IRequest<User>
 {
-    public UpdateUserCommand(Guid userId, User user)
-    {
-        UserId = userId;
-        User = user;
-    }
-    public Guid UserId { get; set; }
-    public User User { get; set; }
+    //public UpdateUserCommand(User user)
+    //{
+    //    User = user;
+    //}
+    //public Guid UserId { get; set; }
+    //public User User { get; set; }
 }
 

@@ -1,6 +1,6 @@
 ﻿using Domain.BaseDomain.DomainModels;
 using Domain.Interfaces;
-using Infrastructure.InventoryDb;
+using Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;

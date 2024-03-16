@@ -1,4 +1,5 @@
-﻿using Domain.BaseDomain.DomainModels;
+﻿using AutoMapper;
+using Domain.BaseDomain.DomainModels;
 using Domain.Interfaces;
 using MediatR;
 
@@ -6,25 +7,36 @@ using MediatR;
     public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, User>
     {
         private readonly IUserService _userService;
+    private readonly IMapper _mapper;
 
-        public UpdateUserCommandHandler(IUserService userService)
+    public UpdateUserCommandHandler(IUserService userService, IMapper mapper)
         {
             _userService = userService;
-        }
+        _mapper = mapper;
+    }
 
-        public Task<User> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+        public async Task<User> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
 
-        public async Task<User> HandleAsync(UpdateUserCommand request, CancellationToken cancellationToken)
-        {
-            if (request.UserId == null || request.User == null)
+            if (request == null || request == null)
             {
                 throw new ArgumentNullException(nameof(request));
             }
-        return await _userService.UpdateAsync(request.UserId, request.User);
-            
+
+            var user = _mapper.Map<User>(request);
+            return await _userService.UpdateAsync(user.Id, user);
         }
+
+        //public async Task<User> HandleAsync(UpdateUserCommand request, CancellationToken cancellationToken)
+        //{
+           
+
+        //    if (request == null || request == null)
+        //    {
+        //        throw new ArgumentNullException(nameof(request));
+        //    }
+        //return await _userService.UpdateAsync(request.UserId, request.User);
+            
+        //}
     }
 

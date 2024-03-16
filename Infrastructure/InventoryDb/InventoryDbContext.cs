@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.InventoryDb
+namespace Infrastructure
 {
     public class InventoryDbContext : DbContext
     {

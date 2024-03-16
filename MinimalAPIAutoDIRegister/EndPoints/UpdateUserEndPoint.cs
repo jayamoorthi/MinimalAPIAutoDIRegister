@@ -1,4 +1,6 @@
-﻿using Domain.BaseDomain.DomainModels;
+﻿using AutoMapper;
+using Domain.BaseDomain.DomainModels;
+using Domain.ModelDtos;
 using MediatR;
 using MinimalAPIAutoDIRegister.CommonEndPoint;
 using MinimalAPIAutoDIRegister.CommonEndPoint.User;
@@ -9,9 +11,9 @@ namespace MinimalAPIAutoDIRegister.EndPoints
     {
         public async Task MapEndPointAsync(IEndpointRouteBuilder app)
         {
-            app.MapPut("user/{userId}", async (Guid userId , User user, ISender sender) =>
+            app.MapPut("user/{userId}", async (Guid userId , UserDto user, IMapper mapper, ISender sender) =>
             {
-                var updateUserInfo = new UpdateUserCommand(userId, user);
+                var updateUserInfo = mapper.Map<UpdateUserCommand>(user);
 
                 var updatedUser = await sender.Send(updateUserInfo);
                 

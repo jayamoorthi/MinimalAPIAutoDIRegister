@@ -13,7 +13,22 @@ class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, User>
     }
     public async Task<User> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
     {
-        return await _userService.DeleteAsync(request.User);
+
+        if(request == null || request.Id != Guid.Empty)
+            throw new ArgumentNullException(nameof(request));
+
+        var user = await _userService.GetByIdAsync(request.Id);
+
+        if(user == null || user.Id != Guid.Empty)
+            throw new ArgumentNullException(nameof(user));
+
+        if (user.IsDeleted)
+        {
+            throw new ArgumentException($"already id has been deleted {nameof(request.Id)}");
+        }
+
+        user.IsDeleted = true;
+        return await _userService.DeleteAsync(user);
     }
 }
 
