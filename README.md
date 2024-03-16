@@ -17,8 +17,10 @@ To practical implementation following items need to Installation in your system.
 •	CQRS, Repository Pattern,
 
 
-Fluent Validation: 
+**Fluent Validation: **
+
 It’s used for strongly typed validation rules in .net library. 
+
   There are two types of validators
 1.	Build-in Validator
 2.	Custom Validator
