@@ -9,9 +9,9 @@ namespace MinimalAPIAutoDIRegister.AutoMapperConfig
         public UserDtoProfile()
         {
             CreateMap<UserDto, CreateUserCommand>().ReverseMap();
-            CreateMap<User, UserDto>().ReverseMap();
-            CreateMap<CreateUserCommand,User>().ReverseMap();
-            CreateMap<UpdateUserCommand, User>().ReverseMap();
+            CreateMap<LoginUser, UserDto>().ReverseMap();
+            CreateMap<CreateUserCommand,LoginUser>().ReverseMap();
+            CreateMap<UpdateUserCommand, LoginUser>().ReverseMap();
             CreateMap<UserDto, UpdateUserCommand>().ReverseMap();
         }
     }

@@ -10,7 +10,7 @@ using MinimalAPIAutoDIRegister.CommonEndPoint.User;
     }
         public Guid UserId { get; set; }
     }
-    public class GetUserInfoQueryResponse : User
+    public class GetUserInfoQueryResponse : LoginUser
     {
 
     }

@@ -5,10 +5,27 @@ using Infrastructure;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using MinimalAPIAutoDIRegister.Extensions;
+using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
+Log.Logger  = new LoggerConfiguration().WriteTo.Console().CreateBootstrapLogger();
 
-var configuration = builder.Configuration;
+Log.Information("starting up"); 
+
+try
+{ 
+    var builder = WebApplication.CreateBuilder(args);
+
+    //builder.Host.UseSerilog((ctx, lc) => lc
+    //.WriteTo.Console());
+
+    builder.Host.UseSerilog((ctx, lc) => lc
+         .WriteTo.Console()
+         .WriteTo.Seq("http://localhost:5341")
+         .ReadFrom.Configuration(ctx.Configuration));
+
+
+
+    var configuration = builder.Configuration;
 string assemblyName = typeof(InventoryDbContext).Namespace;
 var connectionString = configuration.GetConnectionString("TestDb");
 builder.Services.AddTransient<IUserService, UserService>();
@@ -36,6 +53,9 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Serialog middleware
+app.UseSerilogRequestLogging();
+
 // Auto EndPoint Register
 app.MapEndpoints();  
 
@@ -53,3 +73,14 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Unhandled exception");
+}
+finally
+{
+    Log.Information("Shut down complete");
+    Log.CloseAndFlush();
+}

@@ -9,10 +9,10 @@ namespace Domain.Interfaces
 {
     public interface IUserService
     {
-        Task<IEnumerable<User>> GetAllAsync();
-        Task<User?> GetByIdAsync(Guid id);
-        Task<User> InsertAsync(User entity);
-        Task<User> UpdateAsync(Guid id, User entity);
-        Task<User> DeleteAsync(User entity);
+        Task<IEnumerable<LoginUser>> GetAllAsync();
+        Task<LoginUser?> GetByIdAsync(Guid id);
+        Task<LoginUser> InsertAsync(LoginUser entity);
+        Task<LoginUser> UpdateAsync(Guid id, LoginUser entity);
+        Task<LoginUser> DeleteAsync(LoginUser entity);
     }
 }

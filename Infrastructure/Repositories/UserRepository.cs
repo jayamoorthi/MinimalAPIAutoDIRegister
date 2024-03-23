@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    public class UserRepository : BaseRepository<User>, IUserRepository
+    public class UserRepository : BaseRepository<LoginUser>, IUserRepository
     {
         private readonly InventoryDbContext _inventoryDbContext;
         public UserRepository(InventoryDbContext context) : base(context)

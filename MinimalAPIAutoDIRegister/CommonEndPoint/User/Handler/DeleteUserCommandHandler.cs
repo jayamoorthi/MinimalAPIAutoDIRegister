@@ -3,7 +3,7 @@ using Domain.Interfaces;
 using MediatR;
 using MinimalAPIAutoDIRegister.CommonEndPoint.User;
 
-class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, User>
+class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, LoginUser>
 {
     private readonly IUserService _userService;
 
@@ -11,23 +11,23 @@ class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, User>
     {
         _userService = userService;
     }
-    public async Task<User> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
+    public async Task<LoginUser> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
     {
 
-        if(request == null || request.Id != Guid.Empty)
+        if(request == null || request.Id == Guid.Empty)
             throw new ArgumentNullException(nameof(request));
 
         var user = await _userService.GetByIdAsync(request.Id);
 
-        if(user == null || user.Id != Guid.Empty)
+        if(user == null || user.Id == Guid.Empty)
             throw new ArgumentNullException(nameof(user));
 
-        if (user.IsDeleted)
+        if (user.IsSoftDeleted)
         {
             throw new ArgumentException($"already id has been deleted {nameof(request.Id)}");
         }
 
-        user.IsDeleted = true;
+        user.IsSoftDeleted = true;
         return await _userService.DeleteAsync(user);
     }
 }

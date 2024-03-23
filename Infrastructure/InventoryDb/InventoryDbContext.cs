@@ -21,6 +21,6 @@ namespace Infrastructure
             builder.ApplyConfiguration(new UserEntityTypeConfiguration());
         }
 
-        public DbSet<User> User { get; set; }
+        public DbSet<LoginUser> LoginUser { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using Domain.BaseDomain.DomainModels;
 using Domain.Interfaces;
 using MediatR;
 
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, User>
+    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, LoginUser>
     {
     private readonly IUserService _userService;
     private readonly IMapper _mapper;
@@ -13,7 +13,7 @@ using MediatR;
         _userService = userService;
         _mapper = mapper;
     }
-        public async Task<User> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<LoginUser> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
 
            
@@ -26,7 +26,7 @@ using MediatR;
             //    FullName = request.FullName
                 
             //};
-            var user = _mapper.Map<User>(request);
+            var user = _mapper.Map<LoginUser>(request);
 
             return await _userService.InsertAsync(user);
             // Return_ the newly created users ID

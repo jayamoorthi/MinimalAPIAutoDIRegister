@@ -2,7 +2,7 @@
 using MediatR;
 
 
-    public class DeleteUserCommand : IRequest<User>
+    public class DeleteUserCommand : IRequest<LoginUser>
     {
         public DeleteUserCommand(Guid userId)
         {

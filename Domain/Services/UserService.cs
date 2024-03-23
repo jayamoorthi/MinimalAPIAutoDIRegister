@@ -16,27 +16,27 @@ namespace Domain.Services
         {
             _userRepository = userRepository;
         }
-        public async Task<User> DeleteAsync(User user)
+        public async Task<LoginUser> DeleteAsync(LoginUser user)
         {
             return await _userRepository.DeleteAsync(user);
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync()
+        public async Task<IEnumerable<LoginUser>> GetAllAsync()
         {
             return await _userRepository.GetAllAsync();
         }
 
-        public async Task<User?> GetByIdAsync(Guid id)
+        public async Task<LoginUser?> GetByIdAsync(Guid id)
         {
             return await _userRepository.GetByIdAsync(id);
         }
 
-        public async Task<User> InsertAsync(User entity)
+        public async Task<LoginUser> InsertAsync(LoginUser entity)
         {
             return await _userRepository.InsertAsync(entity);
         }
 
-        public async Task<User> UpdateAsync(Guid id, User entity)
+        public async Task<LoginUser> UpdateAsync(Guid id, LoginUser entity)
         {
             return await _userRepository.UpdateAsync(entity);
         }

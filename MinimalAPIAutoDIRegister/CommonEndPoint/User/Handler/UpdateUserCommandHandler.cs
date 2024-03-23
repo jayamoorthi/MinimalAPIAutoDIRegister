@@ -4,7 +4,7 @@ using Domain.Interfaces;
 using MediatR;
 
 
-    public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, User>
+    public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, LoginUser>
     {
         private readonly IUserService _userService;
     private readonly IMapper _mapper;
@@ -15,7 +15,7 @@ using MediatR;
         _mapper = mapper;
     }
 
-        public async Task<User> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+        public async Task<LoginUser> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
 
             if (request == null || request == null)
@@ -23,7 +23,7 @@ using MediatR;
                 throw new ArgumentNullException(nameof(request));
             }
 
-            var user = _mapper.Map<User>(request);
+            var user = _mapper.Map<LoginUser>(request);
             return await _userService.UpdateAsync(user.Id, user);
         }
 

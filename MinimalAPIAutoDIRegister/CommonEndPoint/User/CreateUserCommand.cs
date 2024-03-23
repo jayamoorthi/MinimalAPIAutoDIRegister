@@ -2,7 +2,7 @@
 using MediatR;
 
 
-public class CreateUserCommand : IRequest<User>
+public class CreateUserCommand : IRequest<LoginUser>
 {
     public Guid Id { get; set; }
 

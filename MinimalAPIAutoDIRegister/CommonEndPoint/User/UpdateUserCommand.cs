@@ -2,7 +2,7 @@
 using MediatR;
 using MinimalAPIAutoDIRegister.CommonEndPoint.User;
 
-public class UpdateUserCommand : User,IRequest<User>
+public class UpdateUserCommand : LoginUser,IRequest<LoginUser>
 {
     //public UpdateUserCommand(User user)
     //{
