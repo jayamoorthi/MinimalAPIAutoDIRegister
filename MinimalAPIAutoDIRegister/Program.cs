@@ -72,7 +72,9 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+app.MapGet("/", () => "Hello World!");
+
+ app.Run();
 
 }
 catch (Exception ex)
@@ -84,3 +86,5 @@ finally
     Log.Information("Shut down complete");
     Log.CloseAndFlush();
 }
+
+
