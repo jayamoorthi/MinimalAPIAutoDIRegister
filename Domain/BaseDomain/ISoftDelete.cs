@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Domain.BaseDomain
 {
-    public class BaseEntity
+    public interface ISoftDelete
     {
-        public Guid Id { get; set; }
-
+        bool IsSoftDeleted { get; set; }
     }
 }

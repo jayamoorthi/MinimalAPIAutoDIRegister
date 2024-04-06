@@ -24,7 +24,8 @@ namespace Infrastructure.Repositories
         public async Task<IEnumerable<T>> GetAllAsync() => await _entities.AsNoTracking().ToListAsync();
 
         public async Task<T?> GetByIdAsync(Guid id) =>
-            await _entities.AsNoTracking().SingleOrDefaultAsync(s => s.Id == id);
+            await _entities.AsNoTracking()
+            .SingleOrDefaultAsync(s => s.Id == id);
 
         public async Task<T> InsertAsync(T entity)
         {

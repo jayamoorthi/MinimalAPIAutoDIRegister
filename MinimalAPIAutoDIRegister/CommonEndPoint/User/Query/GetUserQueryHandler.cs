@@ -1,4 +1,5 @@
-﻿using Domain.Interfaces;
+﻿using AutoMapper;
+using Domain.Interfaces;
 using MediatR;
 
 namespace MinimalAPIAutoDIRegister.CommonEndPoint.User.Query
@@ -6,6 +7,8 @@ namespace MinimalAPIAutoDIRegister.CommonEndPoint.User.Query
     public class GetUserQueryHandler : IRequestHandler<GetUserInfoQuery, GetUserInfoQueryResponse>
     {
         private readonly IUserService _userService;
+       // private readonly IMapper _mapper;
+
 
         //private readonly List<User> _users = new List<User>
         //{
@@ -14,9 +17,12 @@ namespace MinimalAPIAutoDIRegister.CommonEndPoint.User.Query
         //    // Add more fake user as needed
         //};
 
-        public GetUserQueryHandler( IUserService userService)
+        public GetUserQueryHandler( IUserService userService
+           // , IMapper mapper
+            )
         {
             _userService = userService;
+           // _mapper = mapper;
         }
         public async Task<GetUserInfoQueryResponse> Handle(GetUserInfoQuery request, CancellationToken cancellationToken)
         {

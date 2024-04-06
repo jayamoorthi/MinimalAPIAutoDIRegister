@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Domain.BaseDomain
 {
-    public class BaseEntity
+    public class SoftDeleteQueryFilter
     {
-        public Guid Id { get; set; }
-
+        public bool IsSoftDeleted { get; set; }
     }
 }
