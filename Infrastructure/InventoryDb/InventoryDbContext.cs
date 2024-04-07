@@ -19,11 +19,14 @@ namespace Infrastructure
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new UserEntityTypeConfiguration());
+            builder.ApplyConfiguration(new RoleEntityTypeConfiguration());
 
             // Applying global query filter to which entity has dervied ISoftDelete interface
             builder.ApplySoftDeleteQueryFilter();
         }
 
         public DbSet<LoginUser> LoginUser { get; set; }
+
+        public DbSet<RoleMaster> RoleMaster { get; set; }
     }
 }

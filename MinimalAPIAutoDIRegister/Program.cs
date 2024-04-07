@@ -25,12 +25,13 @@ try
 
 
 
-    var configuration = builder.Configuration;
+var configuration = builder.Configuration;
 string assemblyName = typeof(InventoryDbContext).Namespace;
 var connectionString = configuration.GetConnectionString("TestDb");
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddDbContext<InventoryDbContext>(options => options.UseSqlServer(connectionString, b => b.MigrationsAssembly(assemblyName)));
+
 
 // DI register FluentValidation 
 builder.Services.AddFluentValidation();
@@ -38,7 +39,7 @@ builder.Services.AddFluentValidation();
 
 
 // Add DI services to the container.
-builder.Services.AddMediatR(cf => cf.RegisterServicesFromAssembly(typeof(Program).Assembly));
+    builder.Services.AddMediatR(cf => cf.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
 // Automaitcally EndPoint register 
 builder.Services.AddEndPoints(typeof(Program).Assembly);
@@ -52,6 +53,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+// Apply db migration if any pending migrations when app start
+app.ApplyDbMigration(configuration);
 
 // Serialog middleware
 app.UseSerilogRequestLogging();
@@ -88,3 +92,16 @@ finally
 }
 
 
+ // Net 5 
+
+//internal void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+//{
+
+//    // migrate any database changes on startup (includes initial db creation)
+//    using (var scope = app.ApplicationServices.CreateScope())
+//    {
+//        var db = scope.ServiceProvider.GetRequiredService<InventoryDbContext>();
+//        db.Database.Migrate();
+//    }
+
+//}
