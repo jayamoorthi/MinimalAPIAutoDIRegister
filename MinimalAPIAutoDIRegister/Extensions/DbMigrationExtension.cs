@@ -7,7 +7,7 @@ namespace MinimalAPIAutoDIRegister.Extensions
 {
     public static class DbMigrationExtension
     {
-        public static void ApplyDbMigration(this WebApplication app, IConfiguration configuration)
+        public static void ApplyDbMigration(this WebApplicationBuilder app, IConfiguration configuration)
         {
            var dbContext = new InventoryDbContext(new DbContextOptionsBuilder<InventoryDbContext>()
                 .UseSqlServer(configuration.GetConnectionString("TestDb"))

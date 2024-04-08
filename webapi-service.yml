@@ -1,0 +1,11 @@
+﻿
+services:
+ webapi:
+  image: 'webapi'
+  build: 
+   context: .
+   dockerfile : MinimalAPIAutoDIRegister\Dockerfile
+  ports:
+   - "7225:7225"
+  volumes:
+   - "/data"
