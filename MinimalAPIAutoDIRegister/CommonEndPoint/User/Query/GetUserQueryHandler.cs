@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Domain.BaseDomain.DomainModels;
 using Domain.Interfaces;
 using MediatR;
 
@@ -26,10 +27,10 @@ namespace MinimalAPIAutoDIRegister.CommonEndPoint.User.Query
         }
         public async Task<GetUserInfoQueryResponse> Handle(GetUserInfoQuery request, CancellationToken cancellationToken)
         {
-            var user = await _userService.GetByIdAsync(request.UserId);
+            var users = await _userService.GetTemporalByIdAsync(request.UserId);
 
-
-            if(user == null)
+            LoginUser?  user = users.FirstOrDefault();
+            if (user == null)
             {
                 throw new NotFoundException($"Product with ID {request.UserId} not found.");
             }

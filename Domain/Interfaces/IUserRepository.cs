@@ -9,5 +9,6 @@ namespace Domain.Interfaces
 {
     public interface IUserRepository: IRepository<LoginUser>
     {
+        Task<List<LoginUser>?> GetTemporalAllUsersQueryAsync(Guid id);
     }
 }

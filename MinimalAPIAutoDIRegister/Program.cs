@@ -11,17 +11,17 @@ Log.Logger  = new LoggerConfiguration().WriteTo.Console().CreateBootstrapLogger(
 
 Log.Information("starting up"); 
 
-try
-{ 
+//try
+//{ 
     var builder = WebApplication.CreateBuilder(args);
 
-    //builder.Host.UseSerilog((ctx, lc) => lc
-    //.WriteTo.Console());
+//builder.Host.UseSerilog((ctx, lc) => lc
+//.WriteTo.Console());
 
-    builder.Host.UseSerilog((ctx, lc) => lc
-         .WriteTo.Console()
-         .WriteTo.Seq("http://localhost:5341")
-         .ReadFrom.Configuration(ctx.Configuration));
+builder.Host.UseSerilog((ctx, lc) => lc
+     .WriteTo.Console()
+     .WriteTo.Seq("http://localhost:5341")
+     .ReadFrom.Configuration(ctx.Configuration));
 
 
 
@@ -47,18 +47,21 @@ builder.Services.AddEndPoints(typeof(Program).Assembly);
 // Automapper register
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
-builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddControllers();
+
+
 var app = builder.Build();
 
-// Apply db migration if any pending migrations when app start
-app.ApplyDbMigration(configuration);
+    // Apply db migration if any pending migrations when app start
 
-// Serialog middleware
-app.UseSerilogRequestLogging();
+    app.GetPendingDbMigrationList(configuration);
+    //app.ApplyDbMigration(configuration);
+
 
 // Auto EndPoint Register
 app.MapEndpoints();  
@@ -66,6 +69,9 @@ app.MapEndpoints();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    // Serialog middleware
+    app.UseSerilogRequestLogging();
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -80,16 +86,16 @@ app.MapGet("/", () => "Hello World!");
 
  app.Run();
 
-}
-catch (Exception ex)
-{
-    Log.Fatal(ex, "Unhandled exception");
-}
-finally
-{
-    Log.Information("Shut down complete");
-    Log.CloseAndFlush();
-}
+//}
+//catch (Exception ex)
+//{
+//    Log.Fatal(ex, "Unhandled exception");
+//}
+//finally
+//{
+//    Log.Information("Shut down complete");
+//    Log.CloseAndFlush();
+//}
 
 
  // Net 5 

@@ -41,5 +41,11 @@ namespace Domain.Services
             return await _userRepository.UpdateAsync(entity);
         }
 
+
+        public async Task<List<LoginUser>?> GetTemporalByIdAsync(Guid id)
+        {
+            return await _userRepository.GetTemporalAllUsersQueryAsync(id);
+        }
+
     }
 }

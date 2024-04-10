@@ -14,5 +14,7 @@ namespace Domain.Interfaces
         Task<LoginUser> InsertAsync(LoginUser entity);
         Task<LoginUser> UpdateAsync(Guid id, LoginUser entity);
         Task<LoginUser> DeleteAsync(LoginUser entity);
+
+        Task<List<LoginUser>?> GetTemporalByIdAsync(Guid id);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Domain.BaseDomain.DomainModels;
 using Domain.Interfaces;
 using Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,17 @@ namespace Infrastructure.Repositories
         public UserRepository(InventoryDbContext context) : base(context)
         {
             _inventoryDbContext = context;
+        }
+
+        public async Task<List<LoginUser>?> GetTemporalAllUsersQueryAsync(Guid id)
+        {
+            List<LoginUser>? users = await _inventoryDbContext.LoginUser
+                                 .TemporalAll()
+                                 .Where(x => x.Id == id).ToListAsync();
+
+            return users;
+
+
         }
 
 

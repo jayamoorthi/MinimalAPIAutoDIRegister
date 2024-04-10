@@ -21,6 +21,9 @@ namespace Infrastructure
             builder.ApplyConfiguration(new UserEntityTypeConfiguration());
             builder.ApplyConfiguration(new RoleEntityTypeConfiguration());
 
+            // Temporal table configuration
+            builder.Entity<LoginUser>().ToTable("LoginUser", x => x.IsTemporal());
+
             // Applying global query filter to which entity has dervied ISoftDelete interface
             builder.ApplySoftDeleteQueryFilter();
         }
