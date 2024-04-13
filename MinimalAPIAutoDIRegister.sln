@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\..\Documents\Auto DI Register for Endpoints using minimal API.docx = ..\..\..\Documents\Auto DI Register for Endpoints using minimal API.docx
 		docker-compose.yml = docker-compose.yml
 		Fluent Validation.docx = Fluent Validation.docx
+		MinimalAPIAutoDIRegister\Tempoaral table in EF.docx = MinimalAPIAutoDIRegister\Tempoaral table in EF.docx
 		webapi-service.yml = webapi-service.yml
 	EndProjectSection
 EndProject
