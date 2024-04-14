@@ -1,0 +1,8 @@
+﻿services:
+ identity-server:
+  image: 'identity-server'
+  build:
+   context: .
+   dockerfile: IdentityServer4.Core\Dockerfile
+  ports:
+   - 7125:7125

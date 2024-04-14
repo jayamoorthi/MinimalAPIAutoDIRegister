@@ -1,5 +1,9 @@
 version: '3'
 services:
+  identity-server:
+    extends:
+     file: identityserver-service.yml
+     service: identity-server
   webapi:
     extends:
      file: webapi-service.yml
